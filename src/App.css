@@ -1,0 +1,285 @@
+/* ----------------------- GENERAL STYLES ----------------------- */
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden; /* ✅ disables scrolling completely */
+  background: radial-gradient(ellipse at bottom, #0b0c17 0%, #1a1a2e 100%);
+  position: relative;
+  color: #fff;
+}
+
+/* ----------------------- NIGHT SKY STARS ----------------------- */
+body::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: transparent;
+  background-image: 
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(white 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px, 200px 200px;
+  background-position: 0 0, 50px 50px, 100px 100px;
+  animation: twinkle 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes twinkle {
+  0% { transform: translate(0, 0); opacity: 0.8; }
+  50% { transform: translate(50px, 50px); opacity: 0.4; }
+  100% { transform: translate(0, 0); opacity: 0.8; }
+}
+
+/* ----------------------- MOON ----------------------- */
+body::after {
+  content: '';
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle at 30% 30%, #fdfdfd 0%, #d0d0d0 60%, transparent 80%);
+  border-radius: 50%;
+  box-shadow: 0 0 50px #fff8;
+}
+
+/* ----------------------- HOME SECTION ----------------------- */
+.home {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* ✅ prevent inner scroll */
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------------------- NAVIGATION ----------------------- */
+nav {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  font-size: 30px;
+  color: white;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0 0 5px #00c6ff, 0 0 10px #00c6ff50;
+}
+
+/* ----------------------- HERO SECTION ----------------------- */
+.hero {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+#tag {
+  font-size: 2vmax;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ----------------------- CATEGORY BUTTONS ----------------------- */
+.cate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.upImg, .chat {
+  padding: 10px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.upImg svg { width: 25px; height: 25px; color: yellowgreen; }
+.chat svg { width: 25px; height: 25px; color: deepskyblue; }
+
+.upImg:hover, .chat:hover {
+  background-color: rgba(0, 198, 255, 0.2);
+  transform: translateY(-3px);
+  cursor: pointer;
+  box-shadow: 0 6px 25px rgba(0, 198, 255, 0.6);
+}
+
+/* ----------------------- INPUT BOX ----------------------- */
+.input-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px;
+  position: fixed;
+  bottom: 20px;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.5);
+}
+
+#add, #submit {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background-color: rgb(11, 16, 17);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.4);
+}
+
+#add:hover, #submit:hover {
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(0, 198, 255, 0.8);
+}
+
+form input {
+  max-width: 60%;
+  width: calc(100% - 120px);
+  height: 60px;
+  background-color: rgb(11, 16, 17);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  outline: none;
+  border-radius: 30px;
+  color: white;
+  padding: 10px 20px;
+  font-size: 19px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+form input:focus {
+  border-color: #00c6ff;
+  box-shadow: 0 0 20px #00c6ff70;
+}
+
+/* ----------------------- CHAT PAGE ----------------------- */
+.chat-page {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden; /* ✅ remove scroll from outer chat page */
+  position: relative;
+  z-index: 1;
+}
+
+/* ----------------------- CHAT CONTAINER SCROLL ----------------------- */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  max-height: calc(100vh - 200px); /* allows scrolling within chat */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar */
+.chat-container::-webkit-scrollbar { width: 6px; }
+.chat-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00c6ff, #0072ff);
+  border-radius: 10px;
+}
+.chat-container::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); }
+
+/* ----------------------- CHAT MESSAGES ----------------------- */
+.user, .ai {
+  width: 90%;
+  padding: 20px 30px;
+  background-color: rgb(11, 16, 17);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 6px 25px rgba(0, 198, 255, 0.3);
+}
+
+.user img { width: 200px; border-radius: 20px; }
+
+.message { display: flex; align-items: flex-start; gap: 10px; max-width: 70%; padding: 8px 12px; border-radius: 12px; }
+
+.user-msg { background-color: #1e3a5f; align-self: flex-end; color: #fff; box-shadow: 0 4px 20px rgba(0, 198, 255, 0.4); }
+
+.ai-msg { background-color: #2c3e50; align-self: flex-start; color: #fff; box-shadow: 0 4px 20px rgba(0, 198, 255, 0.3); }
+
+.msg-icon { font-size: 25px; margin-top: 4px; }
+
+.msg-content p { margin: 0; font-size: 16px; }
+
+.msg-img { max-width: 200px; max-height: 200px; border-radius: 8px; margin-top: 4px; }
+
+/* ----------------------- POP-UP & SELECTION ----------------------- */
+.pop-up {
+  width: 200px; height: 75px;
+  position: absolute;
+  bottom: 120px; left: 15%;
+  background-color: rgb(11, 16, 17);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; padding: 5px;
+  box-shadow: 0 8px 30px rgba(0, 198, 255, 0.5);
+}
+
+.select-up {
+  color: white; width: 100%; padding: 10px; gap: 5px;
+  font-size: 16px; border-radius: 20px; cursor: pointer;
+  display: flex; align-items: center; transition: all 0.3s ease;
+}
+
+.select-up:hover {
+  background-color: rgba(0, 198, 255, 0.3);
+  transform: translateX(3px);
+}
+
+.select-up svg { color: yellowgreen; width: 25px; height: 25px; }
+
+/* ----------------------- MEDIA QUERIES ----------------------- */
+@media (max-width:500px) {
+  #tag { font-size: 25px; }
+  .user, .ai { width: 95%; }
+  form input { width: calc(100% - 100px); }
+}
