@@ -8,17 +8,30 @@ function Chat() {
 
   return (
     <div className="chat-container">
+      {messages.length === 0 && (
+        <p style={{ opacity: 0.6, textAlign: "center" }}>
+          Start a conversation…
+        </p>
+      )}
+
       {messages.map((msg, index) => (
         <div
           key={index}
-          className={`message ${
-            msg.role === "user" ? "user-msg" : "ai-msg"
-          }`}
+          className={`message ${msg.role === "user" ? "user-msg" : "ai-msg"}`}
         >
-          {msg.role === "user" ? <FaUser /> : <FaRobot />}
+          <div className="msg-icon">
+            {msg.role === "user" ? <FaUser /> : <FaRobot />}
+          </div>
+
           <div className="msg-content">
             {msg.text && <p>{msg.text}</p>}
-            {msg.img && <img src={msg.img} className="msg-img" />}
+            {msg.img && (
+              <img
+                src={msg.img}
+                alt="uploaded"
+                className="msg-img"
+              />
+            )}
           </div>
         </div>
       ))}

@@ -2,14 +2,15 @@ import React, { createContext, useState } from "react";
 
 export const DataContext = createContext();
 
-export let user = {
+// Temporary user image holder
+export const user = {
   data: null,
   mime_type: null,
   imgUrl: null,
 };
 
 function UserContext({ children }) {
-  const [messages, setMessages] = useState([]); // ✅ chat history
+  const [messages, setMessages] = useState([]); // chat history
   const [startRes, setStartRes] = useState(false);
   const [popUp, setPopUp] = useState(false);
   const [input, setInput] = useState("");

@@ -276,6 +276,28 @@ form input:focus {
 }
 
 .select-up svg { color: yellowgreen; width: 25px; height: 25px; }
+/* ---------------- CLEAR CHAT BUTTON ---------------- */
+.clear-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.3);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: red;
+  color: #ff8080;
+}
+
 
 /* ----------------------- MEDIA QUERIES ----------------------- */
 @media (max-width:500px) {

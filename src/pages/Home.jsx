@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import "../App.css";
 import { BiImageAdd } from "react-icons/bi";
-import { IoChatboxEllipsesOutline } from "react-icons/io5"; // ✅ added
-import { FaPlus, FaArrowUpLong } from "react-icons/fa6";
+import { IoChatboxEllipsesOutline } from "react-icons/io5";
+import { FaPlus, FaArrowUpLong, FaTrash } from "react-icons/fa6";
 import { DataContext, user } from "../context/UserContext";
 import { genarateResponse } from "../gemini";
 import Chat from "./Chat";
@@ -25,7 +25,6 @@ export default function Home() {
 
     setStartRes(true);
 
-    // add user message
     setMessages((prev) => [
       ...prev,
       { role: "user", text: input, img: user.imgUrl },
@@ -33,7 +32,6 @@ export default function Home() {
 
     setInput("");
 
-    // AI response
     const aiText = await genarateResponse(input);
 
     setMessages((prev) => [
@@ -42,6 +40,11 @@ export default function Home() {
     ]);
 
     user.imgUrl = null;
+  }
+
+  function handleClearChat() {
+    setMessages([]);       // ✅ clear chat
+    setStartRes(false);    // optional: go back to home
   }
 
   function handleImage(e) {
@@ -58,12 +61,16 @@ export default function Home() {
   return (
     <div className="home">
       <nav>
-        <div
-          className="logo"
-          onClick={() => setStartRes(false)}   // optional reset
-        >
+        <div className="logo" onClick={() => setStartRes(false)}>
           Smart AI Bot
         </div>
+
+        {/* ✅ CLEAR CHAT BUTTON */}
+        {messages.length > 0 && (
+          <button className="clear-btn" onClick={handleClearChat}>
+            <FaTrash /> Clear Chat
+          </button>
+        )}
       </nav>
 
       <input type="file" hidden id="inputImg" onChange={handleImage} />
@@ -73,7 +80,6 @@ export default function Home() {
           <span id="tag">What can I help with?</span>
 
           <div className="cate">
-            {/* Upload Image */}
             <div
               className="upImg"
               onClick={() => document.getElementById("inputImg").click()}
@@ -82,11 +88,7 @@ export default function Home() {
               <span>Upload Image</span>
             </div>
 
-            {/* ✅ LET'S CHAT BUTTON (ADDED BACK) */}
-            <div
-              className="chat"
-              onClick={() => setStartRes(true)}
-            >
+            <div className="chat" onClick={() => setStartRes(true)}>
               <IoChatboxEllipsesOutline />
               <span>Let's Chat</span>
             </div>
