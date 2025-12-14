@@ -1,38 +1,30 @@
-import { prevUser } from "./context/UserContext";
+const Api_Url =
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyBzMQFpOYk9I8Y4Bsws8wKfo7LtGfXrYyw";
 
-const Api_Url="https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyBzMQFpOYk9I8Y4Bsws8wKfo7LtGfXrYyw" 
+export async function genarateResponse(prompt) {
+  try {
+    const response = await fetch(Api_Url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [{ text: prompt }],
+          },
+        ],
+      }),
+    });
 
-export async function genarateResponse() {
-    let RequestOption={
-        method:"POST",
-        Headers: {'Content-Type': 'application/json'},
-        body:JSON.stringify({
-              "contents": [
-    {
-      "parts": [
-        {
-          "text": prevUser.prompt
-        },
-        prevUser.data?[  {
-          "inline_data": {
-            "mime_type": prevUser.mime_type,
-            "data": prevUser.data
-          }
-        }]:[]
-      
-      ]
+    const data = await response.json();
+
+    if (!data.candidates || !data.candidates.length) {
+      console.error("Gemini API error:", data);
+      return "⚠️ AI did not return a response.";
     }
-  ]
-        })
-    }
-    try{
-        let response=await fetch(Api_Url,RequestOption)
-        let data= await response.json()
-        let apiResponse=data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g,"$1").trim()
-        return apiResponse;
 
-    } catch{
-
-    }
-    
+    return data.candidates[0].content.parts[0].text;
+  } catch (err) {
+    console.error("Network error:", err);
+    return "⚠️ Network error.";
+  }
 }
