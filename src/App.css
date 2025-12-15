@@ -207,7 +207,7 @@ form input:focus {
 .chat-container {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 3px;
   padding: 10px;
   max-height: calc(100vh - 200px); /* allows scrolling within chat */
   overflow-y: auto;

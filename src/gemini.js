@@ -1,5 +1,5 @@
 const Api_Url =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyBzMQFpOYk9I8Y4Bsws8wKfo7LtGfXrYyw";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=AIzaSyAnlN2JiFiuUNtEt-f1zF6u2h73A3RbnNM";
 
 export async function genarateResponse(prompt) {
   try {
